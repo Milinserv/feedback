@@ -10,6 +10,7 @@
                 <h1 class="text-3xl font-medium text-gray-500">{{ feedback.title }}</h1>
                 <p class="text-sm text-gray-400">{{ datetime }}</p>
                 <p class="text-base mt-2 text-gray-500">{{ feedback.description }}</p>
+                <p class="text-base mt-2 text-gray-500">{{ feedback.service_name }}</p>
             </div>
             <div>
                 <RouterLink
@@ -44,6 +45,7 @@ const feedback = reactive({
     title: '',
     description: '',
     datetime: '',
+    service_name: '',
     isLoaded: false
 });
 
@@ -58,6 +60,7 @@ onBeforeMount(() => {
             feedback.title = feedbackResponseData.title;
             feedback.description = feedbackResponseData.description;
             feedback.datetime = feedbackResponseData.datetime;
+            feedback.service_name = feedbackResponseData.service_name;
             feedback.isLoaded = true;
         }).catch(error => {
             alert(error);
@@ -68,5 +71,6 @@ interface FeedbackResponse {
     title: string;
     description: string;
     datetime: string;
+    service_name: string;
 }
 </script>

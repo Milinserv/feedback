@@ -14,6 +14,7 @@ class FeedbackUseCases
         $feedback->title = $data->title;
         $feedback->description = $data->description;
         $feedback->datetime = $data->datetime->format('Y-m-d H:i:s');
+        $feedback->service_name = $data->service_name;
         $feedback->save();
         $feedback->refresh();
 
