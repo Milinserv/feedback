@@ -8,7 +8,7 @@
         ">
             <div v-if="feedback.isLoaded" class="flex flex-col">
                 <h1 class="text-3xl font-medium text-gray-500">{{ feedback.title }}</h1>
-                <p class="text-sm text-gray-400">{{ datetime }}</p>
+                <p class="text-sm text-gray-400">{{ feedback.datetime }}</p>
                 <p class="text-base mt-2 text-gray-500">{{ feedback.description }}</p>
                 <p class="text-base mt-2 text-gray-500">{{ feedback.service_name }}</p>
                 <StarRating :rating="feedback.rating" :is-disabled="true"  />
@@ -51,10 +51,6 @@ const feedback = reactive({
     rating: 0,
     isLoaded: false
 });
-
-const datetime = computed(() => {
-    return new Date(Number(feedback.datetime)).toLocaleString()
-})
 
 onBeforeMount(() => {
     axios.get<FeedbackResponse>(env.backend_url + `/feedbacks/${idFromRouter}`)
