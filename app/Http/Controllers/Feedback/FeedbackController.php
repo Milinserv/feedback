@@ -21,6 +21,7 @@ class FeedbackController extends Controller
             description: $data['description'],
             datetime: $this->convertTimestampToDT($data['datetime']),
             service_name: $data['service_name'],
+            rating: $data['rating']
         ));
 
         return response()->json([
@@ -34,7 +35,8 @@ class FeedbackController extends Controller
             'title' => $feedback->title,
             'description' => $feedback->description,
             'datetime' => DateTime::createFromFormat('Y-m-d H:i:s', $feedback->datetime)->getTimestamp(),
-            'service_name' => $feedback->service_name
+            'service_name' => $feedback->service_name,
+            'rating' => $feedback->rating
         ]);
     }
 

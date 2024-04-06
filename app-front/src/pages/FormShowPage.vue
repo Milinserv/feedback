@@ -11,6 +11,7 @@
                 <p class="text-sm text-gray-400">{{ datetime }}</p>
                 <p class="text-base mt-2 text-gray-500">{{ feedback.description }}</p>
                 <p class="text-base mt-2 text-gray-500">{{ feedback.service_name }}</p>
+                <StarRating :rating="feedback.rating" :is-disabled="true"  />
             </div>
             <div>
                 <RouterLink
@@ -39,6 +40,7 @@ import axios from 'axios';
 import { onBeforeMount, reactive, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import env from '@/env.json';
+import StarRating from "@/components/StarRating.vue";
 
 const idFromRouter = useRoute().params.id
 const feedback = reactive({
@@ -46,6 +48,7 @@ const feedback = reactive({
     description: '',
     datetime: '',
     service_name: '',
+    rating: 0,
     isLoaded: false
 });
 
@@ -61,6 +64,7 @@ onBeforeMount(() => {
             feedback.description = feedbackResponseData.description;
             feedback.datetime = feedbackResponseData.datetime;
             feedback.service_name = feedbackResponseData.service_name;
+            feedback.rating = feedbackResponseData.rating
             feedback.isLoaded = true;
         }).catch(error => {
             alert(error);
@@ -72,5 +76,6 @@ interface FeedbackResponse {
     description: string;
     datetime: string;
     service_name: string;
+    rating: number
 }
 </script>

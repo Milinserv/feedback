@@ -12,5 +12,6 @@ class AcceptFeedbackData
         public string $description,
         public DateTime $datetime,
         public string $service_name,
+        public string $rating
     ) {}
 }

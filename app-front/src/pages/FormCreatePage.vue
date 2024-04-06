@@ -33,6 +33,8 @@
                 </select>
             </label>
 
+            <StarRating v-model="data.rating" :rating="data.rating"/>
+
             <button class="
                 grid place-content-center w-full p-2 mt-1 border-2 border-gray-300 rounded-md shadow-sm outline-none bg-white
                 text-lg font-semibold tracking-wide text-gray-400
@@ -50,12 +52,14 @@ import {reactive} from 'vue';
 import axios from 'axios';
 import env from '@/env.json'
 import router from '@/router';
+import StarRating from "@/components/StarRating.vue";
 
 const data = reactive({
     description: '',
     title: '',
     datetime: '',
-    service_name: ''
+    service_name: '',
+    rating: 0,
 });
 
 const sendForm = async () => {
@@ -74,7 +78,8 @@ const sendFormImpl = async () => {
         'description': data.description,
         'title': data.title,
         'datetime': new Date(data.datetime).getTime(),
-        'service_name': data.service_name
+        'service_name': data.service_name,
+        'rating': data.rating
     });
 }
 

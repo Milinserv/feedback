@@ -17,7 +17,8 @@ class FeedbackStoreRequest extends FormRequest
             'title' => 'required|string',
             'description' => 'required|string',
             'datetime' => 'required|int',
-            'service_name' => 'required|string'
+            'service_name' => 'required|string',
+            'rating' => 'required|int'
         ];
     }
 }
